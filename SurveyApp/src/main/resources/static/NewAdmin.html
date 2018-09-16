@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>New User</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#newUser").submit(function(event) {
+			event.preventDefault();
+			var userObj = {
+					username : $("#username").val(),
+					password : $("#password").val()
+			}
+			var userObjAsJSON = JSON.stringify(userObj);
+			alert(userObjAsJSON);
+			$.ajax( {
+				url : "/Admin/addAdmin",
+				type : "POST",
+				data : userObjAsJSON,
+				contentType : "application/json",
+				success : function(response, status) {
+					alert(response);
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	<form id="newUser">
+		Enter UserName : <input id="username" /><br />
+		Enter password : <input id="password" /><br />
+		<input  type="submit" value="Add"/>
+	</form>
+</body>
+</html>

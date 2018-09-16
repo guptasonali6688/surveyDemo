@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>User Login</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#newCustomer").submit(function(event) {
+			event.preventDefault();
+			var customerObj = {
+					name : $("#name").val(),
+					email : $("#email").val()
+			}
+			var customerObjAsJSON = JSON.stringify(customerObj);
+			alert(customerObjAsJSON);
+			$.ajax( {
+				url : "/shopping/addCustomer",
+				type : "POST",
+				data : customerObjAsJSON,
+				contentType : "application/json",
+				success : function(response, status) {
+					alert(response);
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	<form id="newUser">
+		Enter UserName : <input id="name" /><br />
+		Enter password : <input id="email" /><br />
+		<input  type="submit" value="Add"/>
+	</form>
+</body>
+</html>
