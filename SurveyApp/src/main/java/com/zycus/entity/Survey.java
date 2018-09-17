@@ -23,8 +23,8 @@ public class Survey {
 	private Set<Question> questions;
 	
 	@ManyToOne
-	@JoinColumn(name="admin_id")
-	private Admin admin;
+	@JoinColumn(name="user_id")
+	private User user;
 
 	public int getId() {
 		return id;
@@ -50,12 +50,12 @@ public class Survey {
 		this.questions = questions;
 	}
 
-	public Admin getAdmin() {
-		return admin;
+	public User getUser() {
+		return user;
 	}
 
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

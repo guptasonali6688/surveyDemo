@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>New User</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#newUser").submit(function(event) {
+			event.preventDefault();
+			var userObj = {
+					name : $("#name").val(),
+					email : $("#email").val(),
+					role : $("#role").val(),
+					username : $("#username").val(),
+					password : $("#password").val()
+			}
+			var userObjAsJSON = JSON.stringify(userObj);
+			alert(userObjAsJSON);
+			$.ajax( {
+				url : "/survey/addUser",
+				type : "POST",
+				data : userObjAsJSON,
+				contentType : "application/json",
+				success : function(response, status) {
+					alert(response);
+					window.location = "/login";					
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	<form id="newUser">
+		Enter Name : <input id="name" /><br />
+		Enter Email : <input id="email" /><br />
+		Enter Role : <input id="role" /><br />
+		Enter Username : <input id="username" /><br />
+		Enter password : <input type="password" id="password" /><br />
+		<input  type="submit" value="Add"/>
+	</form>
+</body>
+</html>

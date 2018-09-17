@@ -1,9 +1,13 @@
 package com.zycus.service;
 
-import com.zycus.entity.Admin;
+import java.util.Map;
+
+import com.zycus.entity.User;
 
 public interface SurveyService {
 
-	void newAdmin(Admin admin);
+	void newUser(User user);
+
+	User validateUser(Map<String, String> user);
 	
 }

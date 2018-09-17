@@ -1,11 +1,13 @@
 package com.zycus.service.impl;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zycus.entity.Admin;
-import com.zycus.repository.AdminRepository;
+import com.zycus.entity.User;
+import com.zycus.repository.UserRepository;
 import com.zycus.service.SurveyService;
 
 @Service
@@ -13,10 +15,13 @@ import com.zycus.service.SurveyService;
 public class SurveyServiceImpl implements SurveyService {
 
 	@Autowired
-	private AdminRepository adminRepository;
+	private UserRepository userRepository;
 	
-	public void newAdmin(Admin admin) {
-		adminRepository.save(admin);
+	public void newUser(User user) {
+		userRepository.save(user);
 	}
 
+	public User validateUser(Map<String, String> user) {
+		return userRepository.getUserFromIdPass(user.get("username"), user.get("password"));
+	}
 }
