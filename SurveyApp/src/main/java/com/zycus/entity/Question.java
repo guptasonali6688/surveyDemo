@@ -6,18 +6,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
+@Table (name="TBL_QUESTION")
 public class Question {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue
 	private int id;
 	
 	private String questionText;
 	
 	@ManyToOne
 	@JoinColumn(name="survey_id")
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Survey survey;
 
 	public int getId() {
@@ -36,12 +43,19 @@ public class Question {
 		this.questionText = questionText;
 	}
 
+	@JsonIgnore
 	public Survey getSurvey() {
 		return survey;
 	}
 
+	@JsonProperty
 	public void setSurvey(Survey survey) {
 		this.survey = survey;
+	}
+
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", questionText=" + questionText + ", survey=" + survey + "]";
 	}
 	
 	

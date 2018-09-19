@@ -3,6 +3,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>New User</title>
+<link rel="stylesheet" href="/stylingcss/default.css" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -32,13 +33,15 @@
 </script>
 </head>
 <body>
+<div id="main">
 	<form id="newUser">
-		Enter Name : <input id="name" /><br />
-		Enter Email : <input id="email" /><br />
-		Enter Role : <input id="role" /><br />
-		Enter Username : <input id="username" /><br />
+		Enter Name : <input type="text" id="name" /><br />
+		Enter Email : <input type="text" id="email" /><br />
+		Enter Role : <input type="text" id="role" /><br />
+		Enter Username : <input type="text" id="username" /><br />
 		Enter password : <input type="password" id="password" /><br />
 		<input  type="submit" value="Add"/>
 	</form>
+</div>
 </body>
 </html>

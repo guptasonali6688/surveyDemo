@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tbl_user")
+@Table(name="TBL_USERS")
 public class User {
 
 	@Id
@@ -21,6 +21,7 @@ public class User {
 	private String email;
 	private String role;
 	private String username;
+	private String password;
 	public String getName() {
 		return name;
 	}
@@ -44,8 +45,6 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
-	private String password;
 	
 	@OneToMany(mappedBy="user")
 	private Set<Survey> surveys;

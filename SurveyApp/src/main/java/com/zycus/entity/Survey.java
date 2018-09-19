@@ -2,24 +2,29 @@ package com.zycus.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table (name="TBL_SERVEY")
 public class Survey {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue
 	private int id;
+	private boolean status;
 	
 	private String surveyName;
 	
-	@OneToMany(mappedBy="survey")
+	@OneToMany(mappedBy="survey", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Set<Question> questions;
 	
 	@ManyToOne
@@ -56,6 +61,14 @@ public class Survey {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 	
 	

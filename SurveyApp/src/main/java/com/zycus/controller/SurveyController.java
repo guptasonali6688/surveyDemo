@@ -1,6 +1,7 @@
 package com.zycus.controller;
 
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.zycus.entity.Question;
+import com.zycus.entity.Survey;
 import com.zycus.entity.User;
 import com.zycus.service.SurveyService;
 
@@ -45,7 +48,16 @@ public class SurveyController {
 		}
 		return false;
 	}
-	
-	
+
+	@RequestMapping(value="/addSurvey")
+	public String addSurvey(@RequestBody Survey survey, HttpServletRequest request) {
+		System.out.println(survey);
+		
+		User user = (User) request.getSession().getAttribute("user");
+		survey.setUser(user);
+		
+		service.addSurvey(survey);
+		return "Survey successfully created..";
+	}
 	
 }
