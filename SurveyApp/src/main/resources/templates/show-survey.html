@@ -4,18 +4,6 @@
 <meta charset="ISO-8859-1">
 <title>Survey Details</title>
 <link rel="stylesheet" href="/stylingcss/default.css" />
-<style>
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-</style>
 </head>
 <body>
 <div id="main">
@@ -35,9 +23,9 @@ th, td {
 		<tr>
 			<th>Questions</th>
 		</tr>
-		 	<tr th:each="question  : ${curSurvey.questions}">	
-				<td th:text="${question.questionText}"></td>		
-			</tr> 
+		 <tr th:each="question  : ${curSurvey.questions}">	
+			<td th:text="${question.questionText}"></td>		
+		</tr> 
 	</table>
 </div>
 </body>

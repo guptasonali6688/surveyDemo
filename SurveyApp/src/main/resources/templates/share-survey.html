@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Deactivate Survey</title>
+<link rel="stylesheet" href="/stylingcss/default.css" />
+<style>
+table,td,th,tr {
+	border: none;
+}
+</style>
+<style>
+
+</style>
+</head>
+<body>
+	<div id="main">
+		<h1>All Surveys</h1>
+		<hr />
+		<table>	
+			<tr  th:each="survey : ${surveys}" >
+				<form th:action="@{/home/share}" method="post">
+				<td><input type="text" th:value="${survey.id}" readonly="readonly" name="id" id="sid"/></td>			
+				<td><input type="text" th:value="${survey.surveyName}" readonly="readonly" name="surveyName" id="name"/></td>
+				<td><button type="submit">Share</button></td>
+				</form>
+			</tr>
+			</form> 
+		</table>
+	</div>
+</body>
+</html>

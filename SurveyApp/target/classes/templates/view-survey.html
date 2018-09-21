@@ -24,9 +24,10 @@ table,td,th,tr {
 		<hr />
 		<table>	
 			<tr th:each="survey : ${surveys}">
-				<form th:action="@{/home/SurveyDetails}" method="post" >
-					<td><input type="text" th:value="${survey.id}" readonly="readonly" name="id" /></td>			
+				<form th:action="@{/home/SurveyDetails}" method="post"  >
+				<td><input type="text" th:value="${survey.id}" readonly="readonly" name="id" /></td>			
 				<td><input type="text" th:value="${survey.surveyName}" readonly="readonly" name="surveyName" /></td>
+				<td ><input type="text" th:value="${survey.status} ? 'ACTIVE' : 'INACTIVE'" readonly="readonly" /></td>
 				<td><button type="submit">View</button></td>
 				</form>
 			</tr>

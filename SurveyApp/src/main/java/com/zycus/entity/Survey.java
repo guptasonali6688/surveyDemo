@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="TBL_SERVEY")
+@Table (name="TBL_SURVEY")
 public class Survey {
 
 	@Id
@@ -69,6 +69,12 @@ public class Survey {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "Survey [id=" + id + ", status=" + status + ", surveyName=" + surveyName + ", questions=" + questions
+				+ ", user=" + user + "]";
 	}
 	
 	

@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zycus.entity.Question;
+import com.zycus.dto.ShareSurveyDTO;
+import com.zycus.entity.Share;
 import com.zycus.entity.Survey;
 import com.zycus.entity.User;
 import com.zycus.service.SurveyService;
@@ -23,25 +24,18 @@ public class SurveyController {
 
 	@Autowired
 	private SurveyService service;
-	
-	@RequestMapping(value="/addUser",
-			method = RequestMethod.POST,
-			consumes = "application/json",
-			produces = "text/plain")
+
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST, consumes = "application/json", produces = "text/plain")
 	public String addUser(@RequestBody User user) {
 		service.newUser(user);
 		return "Registered successfully";
 	}
-	
-	@RequestMapping(value="/userLogin",
-			method = RequestMethod.POST,
-			consumes = "application/json",
-			produces="application/json")
+
+	@RequestMapping(value = "/userLogin", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public boolean userLogin(@RequestBody Map<String, String> userMap, HttpServletRequest request) {
 
 		User user = service.validateUser(userMap);
-		if (user != null)
-		{
+		if (user != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			return true;
@@ -49,15 +43,43 @@ public class SurveyController {
 		return false;
 	}
 
-	@RequestMapping(value="/addSurvey")
+	@RequestMapping(value = "/addSurvey")
 	public String addSurvey(@RequestBody Survey survey, HttpServletRequest request) {
 		System.out.println(survey);
-		
+
 		User user = (User) request.getSession().getAttribute("user");
 		survey.setUser(user);
-		
+
 		service.addSurvey(survey);
 		return "Survey successfully created..";
 	}
-	
+
+	@RequestMapping(value = "/shareSurveyUsers")
+	public String addSurvey(@RequestBody ShareSurveyDTO shareSurveyDTO, HttpServletRequest request) {
+
+		Set<User> users = shareSurveyDTO.getUsers();
+		System.out.println(shareSurveyDTO);
+
+		for (User user : users) {
+			Share share = new Share();
+			share.setAdmin(shareSurveyDTO.getAdmin());
+			share.setSurvey(shareSurveyDTO.getSurvey());
+			share.setUser(user);
+
+			System.out.println(share);
+
+			// TODO: Save the share data
+			service.newShare(share);
+		}
+		return "Successfully shared..";
+	}
+
+	@RequestMapping(value = "/deactivate", method = RequestMethod.POST)
+	public String deactivate(@RequestBody Map<String, String> surveyMap) {
+		System.out.println(surveyMap.size());
+		Survey survey = service.getSurvey(Integer.parseInt(surveyMap.get("id")));
+		service.deactivateSurvey(survey);
+		return "Survey successfully deactivated";
+	}
+
 }

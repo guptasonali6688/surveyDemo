@@ -10,5 +10,9 @@ public interface UserRepository extends CrudRepository<User, Integer>{
 
 	@Query("select u from User u where u.username = :username and u.password = :password")
 	public User getUserFromIdPass(@Param("username") String username, @Param("password") String password);
+
+	@Query("select u from User u where u.role = 'user' OR u.role = 'User'")
+	public Iterable<User> findByRole();
+
 	
 }
