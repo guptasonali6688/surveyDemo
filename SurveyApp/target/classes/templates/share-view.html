@@ -57,7 +57,8 @@ $(function(){
 	<div id="main">
 		<h1>Share</h1>
 		<hr />
-		<table>	
+		<table>
+		<div th:if="${not #lists.isEmpty(users)}">
 			<tr th:each="user : ${users}">
 				<div id="survey">
 					<form th:action="@{/home/shareDone}" method="post"  >
@@ -67,13 +68,20 @@ $(function(){
 					</form>
 				</div>		
 			</tr>
-			<tr>
-				<td><button type="submit" id="share">View</button></td>
+			<tr>	
+				<td><button type="submit" id="share">Share</button></td>
 			</tr>
+		
+		</div>
+		<div th:unless="${not #lists.isEmpty(users)}">
+			<tr>
+			<td>No user available..</td>
+			</tr>
+		</div>
 		</table>
 	</div>
-	
+	<!-- 
 	<span id="survey_id" th:text="${curSurvey.id}"></span>
-	<span id="user_id" th:text="${admin.id}"></span>
+	<span id="user_id" th:text="${admin.id}"></span> -->
 </body>
 </html>

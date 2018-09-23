@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>New User</title>
 <link rel="stylesheet" href="/stylingcss/default.css" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(function() {
 		$("#newUser").submit(function(event) {
 			event.preventDefault();
@@ -19,27 +19,36 @@
 			var userObjAsJSON = JSON.stringify(userObj);
 			alert(userObjAsJSON);
 			$.ajax( {
-				url : "/survey/addUser",
+				url : "/addUser",
 				type : "POST",
 				data : userObjAsJSON,
 				contentType : "application/json",
 				success : function(response, status) {
-					alert(response);
-					window.location = "/login";					
+					alert(response);				
 				}
 			})
 		})
 	})
-</script>
+</script> -->
 </head>
 <body>
 <div id="main">
-	<form id="newUser">
-		Enter Name : <input type="text" id="name" /><br />
-		Enter Email : <input type="text" id="email" /><br />
-		Enter Role : <input type="text" id="role" /><br />
-		Enter Username : <input type="text" id="username" /><br />
-		Enter password : <input type="password" id="password" /><br />
+	<form action=""# th:action="@{/addUser}" th:object="${user}" method="POST" id="newUser">
+		Enter Name : <input type="text" id="name" th:field="*{name}" />
+		<span id="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+		<br />
+		Enter Email : <input type="text" id="email" th:field="*{email}" />
+		<span id="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+		<br />
+		Enter Role : <input type="text" id="role" th:field="*{role}" />
+		<span id="error" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></span>
+		<br />
+		Enter Username : <input type="text" id="username" th:field="*{username}" />
+		<span id="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+		<br />
+		Enter password : <input type="password" id="password" th:field="*{password}"/>
+		<span id="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+		<br />
 		<input  type="submit" value="Add"/>
 	</form>
 </div>

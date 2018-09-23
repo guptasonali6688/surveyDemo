@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zycus.entity.Survey;
-import com.zycus.entity.User;
 
 public interface SurveyRepository extends CrudRepository<Survey, Integer>{
 

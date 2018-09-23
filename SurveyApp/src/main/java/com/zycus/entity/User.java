@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="USER_TBL")
@@ -17,11 +19,22 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@NotBlank(message="*Name cannot be blank")
 	private String name;
+	
+	@NotBlank(message="*Email cannot be blank")
+	@Email(message="*Enter a valid Email-Id")
 	private String email;
+	
+	@NotBlank(message="*Role cannot be blank")
 	private String role;
+	
+	@NotBlank(message="*Username cannot be blank")
 	private String username;
+	
+	@NotBlank(message="*Password cannot be blank")
 	private String password;
+	
 	public String getName() {
 		return name;
 	}

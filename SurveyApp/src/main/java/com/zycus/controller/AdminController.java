@@ -24,7 +24,6 @@ public class AdminController {
 
 	@RequestMapping(value = "/survey")
 	public String newSurvey() {
-
 		return "newSurvey";
 	}
 
@@ -66,7 +65,7 @@ public class AdminController {
 		model.addAttribute("curSurvey", cur_survey);
 		model.addAttribute("users", users);
 		model.addAttribute("admin", request.getSession().getAttribute("user"));
-		return "share-view";
+		return "share-view";	
 	}
 
 }

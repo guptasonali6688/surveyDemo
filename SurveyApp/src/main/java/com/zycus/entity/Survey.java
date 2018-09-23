@@ -6,12 +6,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table (name="TBL_SURVEY")
@@ -20,8 +20,10 @@ public class Survey {
 	@Id
 	@GeneratedValue
 	private int id;
+	
 	private boolean status;
 	
+	@NotBlank
 	private String surveyName;
 	
 	@OneToMany(mappedBy="survey", cascade = CascadeType.ALL,fetch = FetchType.EAGER)

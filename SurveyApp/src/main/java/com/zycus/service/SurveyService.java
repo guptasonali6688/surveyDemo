@@ -26,4 +26,5 @@ public interface SurveyService {
 
 	void newShare(Share share);
 
+/*	Iterable<Share> getSharedSurvey(int id);*/
 }

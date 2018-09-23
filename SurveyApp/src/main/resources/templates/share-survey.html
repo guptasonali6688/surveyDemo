@@ -22,6 +22,7 @@ table,td,th,tr {
 				<form th:action="@{/home/share}" method="post">
 				<td><input type="text" th:value="${survey.id}" readonly="readonly" name="id" id="sid"/></td>			
 				<td><input type="text" th:value="${survey.surveyName}" readonly="readonly" name="surveyName" id="name"/></td>
+				<td ><input type="text" th:value="${survey.status} ? 'ACTIVE' : 'INACTIVE'" readonly="readonly" /></td>
 				<td><button type="submit">Share</button></td>
 				</form>
 			</tr>

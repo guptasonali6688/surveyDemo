@@ -25,12 +25,6 @@ public class SurveyController {
 	@Autowired
 	private SurveyService service;
 
-	@RequestMapping(value = "/addUser", method = RequestMethod.POST, consumes = "application/json", produces = "text/plain")
-	public String addUser(@RequestBody User user) {
-		service.newUser(user);
-		return "Registered successfully";
-	}
-
 	@RequestMapping(value = "/userLogin", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public boolean userLogin(@RequestBody Map<String, String> userMap, HttpServletRequest request) {
 
@@ -49,7 +43,7 @@ public class SurveyController {
 
 		User user = (User) request.getSession().getAttribute("user");
 		survey.setUser(user);
-
+		
 		service.addSurvey(survey);
 		return "Survey successfully created..";
 	}

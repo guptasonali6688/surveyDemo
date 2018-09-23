@@ -69,5 +69,9 @@ public class SurveyServiceImpl implements SurveyService {
 	public void newShare(Share share) {
 		shareSurveyRepository.save(share);
 	}
+/*
+	public Iterable<Share> getSharedSurvey(int id) {
+		return shareSurveyRepository.getAllSurvey(id);
+	}*/
 
 }
